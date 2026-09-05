@@ -219,13 +219,49 @@
             margin-top: 20px;
         }
 
-        /* RESPONSIVIDADE */
+       /* RESPONSIVIDADE TÁTICA CORRIGIDA */
         @media (max-width: 900px) {
-            .shop-layout { grid-template-columns: 1fr; }
-            .cart-panel { position: fixed; bottom: 0; left: 0; width: 100%; border-radius: 20px 20px 0 0; z-index: 100; box-shadow: 0 -10px 30px rgba(0,0,0,0.8); padding: 20px; }
-            .cart-items { display: none; /* Esconde lista detalhada no mobile para focar no botão */ }
-            body { padding-bottom: 120px; } /* Espaço para o carrinho fixo */
-            .cart-total { margin-top: 0; padding-top: 0; border: none; }
+            .shop-layout { 
+                grid-template-columns: 1fr; 
+            }
+            
+            /* Transforma o painel num rodapé fixo compacto e agressivo */
+            .cart-panel { 
+                position: fixed; 
+                bottom: 0; 
+                left: 0; 
+                width: 100%; 
+                border-radius: 15px 15px 0 0; 
+                z-index: 1000; 
+                box-shadow: 0 -15px 30px rgba(0,0,0,0.85); 
+                padding: 15px 20px; 
+                background-color: var(--bg-color-cards);
+                border-top: 2px solid var(--accent-color);
+            }
+            
+            /* Oculta distrações para focar na conversão */
+            .cart-title { display: none; }
+            .cart-items { display: none; }
+            
+            /* Compacta os valores */
+            .cart-total { 
+                margin-top: 0; 
+                padding-top: 0; 
+                border: none; 
+                font-size: 1.3rem; 
+                margin-bottom: 10px;
+            }
+            
+            .btn-checkout { 
+                margin-top: 0; 
+                padding: 12px; 
+                font-size: 1rem; 
+            }
+            
+            /* Garante área livre para rolagem não esconder o último item */
+            body { 
+                padding-bottom: 130px; 
+            } 
         }
     </style>
 </head>
