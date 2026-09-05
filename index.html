@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokéElite Canela PRO - Domine o Jogo de Onde Estiver</title>
+    <meta name="description" content="Aumente seu poder no Pokémon Go sem sair de casa. Serviços de elite para jogadores em Curitiba e RMC. Dynamax, Reides, Pokémon Lucky e itens com 50% de desconto.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================================
+           VARIANTES DE DESIGN E CONFIGURAÇÕES GLOBAIS
+           ========================================================= */
+        :root {
+            /* Paleta de Cores Tática */
+            --bg-color-deep: #05051a;        /* Azul Escuro Profundo (Fundo Principial) */
+            --bg-color-cards: #101030;      /* Azul Levemente Mais Claro para Cards */
+            --text-color: #f1f1f1;          /* Texto Claro Principal */
+            --accent-color: #d4af37;        /* Dourado (Acentuação e Destaques) */
+            --action-color: #00e676;        /* Verde Brilhante para CTAs (Call to Action) */
+            --hover-color: #00c853;         /* Verde Hover */
+            
+            /* Tipografia */
+            --font-main: 'Montserrat', sans-serif;
+            
+            /* Espaçamentos e Estrutura */
+            --section-padding: 80px 0;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color-deep);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+        }
+
+        /* =========================================================
+           IMAGEM DE FUNDO - CONFIGURAÇÃO OBRIGATÓRIA (PÁGINA 03)
+           ========================================================= */
+        /* Esta classe será aplicada à seção Hero, mas você pode usar em outras.
+           Para usar imagens diferentes em seções, crie outras classes. */
+        .full-bg-image {
+            background-image: linear-gradient(rgba(5, 5, 26, 0.8), rgba(5, 5, 26, 0.9)), 
+                              url('sua-imagem-fundo-high-res.jpg'); /* INSERIR URL AQUI */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Efeito Parallax */
+        }
+
+        /* =========================================================
+           CÓDIGO DE CSS PARA ELEMENTOS REUTILIZÁVEIS
+           ========================================================= */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--action-color);
+            color: var(--bg-color-deep);
+            font-weight: 700;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: var(--hover-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 230, 118, 0.3);
+        }
+
+        .title-large {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .title-large span {
+            color: var(--accent-color);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* =========================================================
+           CÓDIGO ESPECÍFICO DE SEÇÕES
+           ========================================================= */
+        
+        /* HEADER TÁTICO */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--accent-color);
+        }
+
+        /* HERO (SEÇÃO PRINCIPAL COM IMAGEM DE FUNDO) */
+        .hero {
+            padding: var(--section-padding);
+            padding-top: 150px;
+            padding-bottom: 150px;
+            text-align: center;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* SEÇÃO DE SERVIÇOS (GRUPOS 1, 2, 3, 4) */
+        .services {
+            padding: var(--section-padding);
+            background-color: var(--bg-color-cards);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: #1a1a4a; /* Fundo interno do card */
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e53935;
+            color: white;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+        }
+
+        /* SEÇÃO SOBRE PÚBLICO ALVO ('CANELA') */
+        .target-audience {
+            padding: var(--section-padding);
+        }
+
+        .target-audience .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .target-text p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* SEÇÃO DE DESCONTOS (PÁGINA 03) */
+        .discounts {
+            padding: var(--section-padding);
+            background-color: var(--bg-color-cards);
+            border-top: 2px solid var(--accent-color);
+        }
+
+        .discount-table {
+            max-width: 800px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .discount-table th, .discount-table td {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .discount-table th {
+            background-color: #1a1a4a;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .discount-table tr:nth-child(even) {
+            background-color: rgba(212, 175, 55, 0.05);
+        }
+
+        .highlight-discount {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--action-color);
+        }
+
+        /* SEÇÃO LOCAL CURITIBA (PÁGINA 03) */
+        .local-bonus {
+            padding: var(--section-padding);
+            text-align: center;
+        }
+
+        .bonus-box {
+            display: inline-block;
+            border: 3px solid var(--accent-color);
+            padding: 30px 50px;
+            border-radius: 8px;
+            background-color: rgba(212, 175, 55, 0.05);
+        }
+
+        .bonus-box h3 {
+            font-size: 2rem;
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        .bonus-percentage {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--accent-color);
+            line-height: 1;
+        }
+
+        /* RESPONSIVIDADE EXTREMA */
+        @media (max-width: 992px) {
+            .title-large { font-size: 2.5rem; }
+            .target-audience .container { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            :root { --section-padding: 50px 0; }
+            .title-large { font-size: 2rem; }
+            .service-card { padding: 20px; }
+            .discount-table th, .discount-table td { padding: 12px; font-size: 0.9rem; }
+            .bonus-box { padding: 20px; width: 90%; }
+            .bonus-percentage { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">PokéElite<span style="color:white;">Canela</span>PRO</div>
+            <nav>
+                <a href="#serivcos">Serviços</a> / 
+                <a href="#descontos">Descontos</a> / 
+                <a href="#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero full-bg-image">
+        <div class="container">
+            <h1 class="title-large">Seu Poder de Elite <br><span>Onde Você Estiver</span></h1>
+            <p>A PokéElite Canela PRO é o arsenal completo para o jogador moderno. Domine reides, consiga os lendários mais fortes e tenha itens ilimitados, sem precisar sair de casa.</p>
+            <a href="#serivcos" class="btn">Explore Nossos Serviços</a>
+        </div>
+    </section>
+
+    <section id="serivcos" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Seu Arsenal de Elite</h2>
+                <p>Equipe-se com o que há de melhor, mais rápido e mais barato.</p>
+            </div>
+
+            <div class="services-grid">
+                <article class="service-card">
+                    <span class="card-badge">PROMOÇÃO</span>
+                    <div class="card-icon">&#128176;</div> <h3>Itens da Loja <br>Pela Metade do Preço</h3>
+                    <p>Incenso, Módulos Lure, Incubadoras e mais. Tudo que vende na loja oficial, com 50% de desconto real.</p>
+                    <button class="btn btn-sm">Ver Itens</button>
+                </article>
+
+                <article class="service-card">
+                    <div class="card-icon">&#9889;</div> <h3>Dynamax e <br>Gigamax Power</h3>
+                    <p>Ative o poder máximo. Serviços exclusivos para Pokémons Dynamax e Gigamax prontos para a batalha.</p>
+                    <button class="btn btn-sm">Dominar Poder</button>
+                </article>
+
+                <article class="service-card">
+                    <div class="card-icon">&#128059;</div> <h3>Pokémons Para <br>Fazer Reides</h3>
+                    <p>Não dependa de ninguém. Monte seu time lendário perfeito com Pokémons meta-reide imbatíveis.</p>
+                    <button class="btn btn-sm">Conseguir Time</button>
+                </article>
+
+                <article class="service-card">
+                    <div class="card-icon">&#10024;</div> <h3>Caçada por <br>Pokémons Sortudos</h3>
+                    <p>Troca repetida de 1 único Pokémon até sair Lucky. Garanta estatísticas perfeitas e custo reduzido.</p>
+                    <button class="btn btn-sm">Iniciar Caçada</button>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="target-audience">
+        <div class="container">
+            <div class="target-text">
+                <h2 class="title-large">Cansado de <br>Perder Reides?</h2>
+                <p>Nós sabemos: você joga em uma cidade que não é tão grande, com reides que raramente têm mais de 5 pessoas. Você tem poucos meses de jogo e joga 'Canela' (sem sair de casa), o que te deixa sem Pokebolas e sem o poder necessário.</p>
+                <p>Você é o nosso público alvo. Nós somos o poder que falta para você dominar sua região.</p>
+                <a href="#descontos" class="btn">Saiba Como Te Ajudar</a>
+            </div>
+            <div class="target-image">
+                <img src="https://via.placeholder.com/500x400?text=JOGADOR+CANELA" alt="Mockup Jogador Canela" style="width:100%; border-radius: 8px;">
+            </div>
+        </div>
+    </section>
+
+    <section id="descontos" class="discounts">
+        <div class="container">
+            <div class="section-header">
+                <h2>Seu Poder por Menos</h2>
+                <p>Quanto menos tempo de jogo, maior o nosso apoio para te nivelar.</p>
+            </div>
+
+            <table class="discount-table">
+                <thead>
+                    <tr>
+                        <th>Nível do Jogador</th>
+                        <th>Desconto Tático</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nível &lt; 20</td>
+                        <td class="highlight-discount">50%</td>
+                    </tr>
+                    <tr>
+                        <td>Nível 20 - 30</td>
+                        <td class="highlight-discount">30%</td>
+                    </tr>
+                    <tr>
+                        <td>Nível 30 - 40</td>
+                        <td class="highlight-discount">15%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="local-bonus">
+        <div class="container">
+            <div class="bonus-box">
+                <h3>Bônus Curitiba e RMC</h3>
+                <p>Jogadores da capital ou Região Metropolitana ganham automaticamente:</p>
+                <div class="bonus-percentage">30% OFF</div>
+                <p>Acumulativo com os pacotes acima.</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
