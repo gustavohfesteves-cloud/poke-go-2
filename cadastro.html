@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alistamento Tático - PokéElite Canela PRO</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================================
+           VARIÁVEIS TÁTICAS
+           ========================================================= */
+        :root {
+            --bg-color-deep: #05051a;
+            --bg-color-cards: #101030;
+            --bg-color-input: #1a1a4a;
+            --text-color: #f1f1f1;
+            --accent-color: #d4af37;
+            --action-color: #00e676;
+            --hover-color: #00c853;
+            --discount-color: #e53935; /* Vermelho para destaque */
+            --font-main: 'Montserrat', sans-serif;
+            --border-radius: 8px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color-deep);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            background-color: var(--bg-color-deep);
+        }
+        .logo { font-size: 1.5rem; font-weight: 900; color: var(--accent-color); text-transform: uppercase; }
+        .logo span { color: white; }
+        
+        .form-container {
+            width: 90%;
+            max-width: 700px;
+            background-color: var(--bg-color-cards);
+            margin: 40px auto;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        /* BANNER DE DESCONTO TÁTICO */
+        .discount-banner {
+            background-color: var(--discount-color);
+            color: white;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 20px;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            margin: -40px -40px 30px -40px;
+            box-shadow: 0 4px 15px rgba(229, 57, 53, 0.4);
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
+            padding-bottom: 20px;
+        }
+
+        .form-header h2 { font-size: 2rem; color: var(--text-color); margin-bottom: 10px; }
+        .form-header p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; font-weight: 700; margin-bottom: 10px; color: var(--accent-color); font-size: 0.95rem; }
+
+        input[type="text"], input[type="number"], textarea {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--bg-color-input);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-color);
+            border-radius: 4px;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
+            outline: none;
+            border-color: var(--action-color);
+            box-shadow: 0 0 10px rgba(0, 230, 118, 0.2);
+        }
+
+        textarea { resize: vertical; min-height: 100px; }
+
+        .radio-group { display: flex; gap: 20px; flex-wrap: wrap; }
+        .radio-option {
+            display: flex; align-items: center; cursor: pointer;
+            background-color: var(--bg-color-input); padding: 10px 20px;
+            border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s;
+        }
+        .radio-option:hover { border-color: var(--accent-color); }
+        .radio-option input[type="radio"] { margin-right: 10px; accent-color: var(--accent-color); transform: scale(1.2); }
+
+        #gasto-diario-container {
+            display: none; margin-top: 15px; padding-left: 20px; border-left: 2px solid var(--action-color);
+        }
+
+        .btn-submit {
+            display: block; width: 100%; padding: 18px;
+            background-color: var(--action-color); color: var(--bg-color-deep);
+            text-align: center; font-size: 1.1rem; font-weight: 900;
+            text-transform: uppercase; border-radius: 4px; border: none;
+            cursor: pointer; margin-top: 30px; transition: 0.3s; letter-spacing: 1px;
+        }
+        .btn-submit:hover {
+            background-color: var(--hover-color); transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 230, 118, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .form-container { padding: 25px; margin: 20px auto; }
+            .discount-banner { margin: -25px -25px 20px -25px; font-size: 1.4rem; }
+            .radio-group { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">PokéElite<span>Canela</span>PRO</div>
+    </header>
+
+    <div class="form-container" id="area-pdf">
+        
+        <div class="discount-banner">
+            PREENCHER O CADASTRO GARANTE 10% DE DESCONTO
+        </div>
+
+        <div class="form-header">
+            <h2>Alistamento de Elite</h2>
+            <p>Preencha os dados táticos abaixo para liberar seus descontos exclusivos de nivelamento.</p>
+        </div>
+
+        <form id="cadastroForm">
+            <div class="form-group">
+                <label>Gênero:</label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="genero" value="M" required> Masculino (M)</label>
+                    <label class="radio-option"><input type="radio" name="genero" value="F" required> Feminino (F)</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="level">Level da sua conta:</label>
+                <input type="number" id="level" name="level" min="1" max="50" placeholder="Ex: 25" required>
+            </div>
+
+            <div class="form-group">
+                <label>Já comprou itens na loja do jogo?</label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="comprou_loja" value="Sim" onclick="toggleGasto(true)" required> Sim</label>
+                    <label class="radio-option"><input type="radio" name="comprou_loja" value="Não" onclick="toggleGasto(false)" required> Não</label>
+                </div>
+                
+                <div id="gasto-diario-container">
+                    <label style="margin-top: 15px;">Se sim, gasta quanto por dia aproximadamente?</label>
+                    <div class="radio-group" style="flex-direction: column; gap: 10px;">
+                        <label class="radio-option"><input type="radio" name="gasto_diario" value="2-5 reais"> Entre R
